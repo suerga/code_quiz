@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  font-family: "Indie Flower", cursive;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--hue-neutral);
+}
+
+.container {
+  font-size: 50px;
+  width: 800px;
+  max-width: 80%;
+  background-color: lavender;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 10px;
+}
+
+.timer,
+.score {
+  font-size: 30px;
+}
+
+#answer-btn {
+  margin: 20px 0;
+  display: grid;
+  padding: 5px 10px;
+  gap: 10px;
+  background-color: lavender;
+}
+
+.btn {
+  background-color: pink;
+  padding: 5px 10px;
+}
+
+#start-btn {
+  margin: 20px 0;
+  display: grid;
+  background-color: pink;
+  padding: 5px 50px;
+  align-items: center;
+}
+
+.answer-btn {
+  font-size: 20px;
+}
+
+.btn.correct {
+  background-color: lightgoldenrodyellow;
+  padding: 5px 10px;
+}
+
+.btn.wrong {
+  background-color: lightcoral;
+  padding: 5px 10px;
+}
+
+.hide {
+  display: none;
+}
