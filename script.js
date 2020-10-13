@@ -11,12 +11,12 @@ var scoreEl = document.querySelector(".score");
 
 var questions = [
   {
-    question: "Q1: Is web development fun?",
+    question: "Q1: What is a boolean?",
     answers: [
-      { text: "Kinda", correct: false },
-      { text: "YES!!!", correct: true },
-      { text: "Um no", correct: false },
-      { text: "IDK", correct: false },
+      { text: "text", correct: false },
+      { text: "true false question", correct: true },
+      { text: "numbers", correct: false },
+      { text: "images", correct: false },
     ],
   },
   {
@@ -29,39 +29,39 @@ var questions = [
     ],
   },
   {
-    question: "Q3: Is web development fun?",
+    question: "Q3: what are import tools for adding action to a website?",
     answers: [
-      { text: "Kinda", correct: false },
-      { text: "YES!!!", correct: true },
-      { text: "Um no", correct: false },
+      { text: "html", correct: false },
+      { text: "css", correct: false },
+      { text: "javascript", correct: true },
       { text: "IDK", correct: false },
     ],
   },
   {
-    question: "Q4: Is web development fun?",
+    question: "Q4: what is API stand for?",
     answers: [
-      { text: "Kinda", correct: false },
-      { text: "YES!!!", correct: true },
-      { text: "Um no", correct: false },
+      { text: "application programming interface", correct: true },
+      { text: "apple pie infinity", correct: false },
+      { text: "alien programming invade", correct: false },
       { text: "IDK", correct: false },
     ],
   },
   {
-    question: "Q5: Is web development fun?",
+    question: "Q5: what element usually contain in <p></p>?",
     answers: [
-      { text: "Kinda", correct: false },
-      { text: "YES!!!", correct: true },
-      { text: "Um no", correct: false },
-      { text: "IDK", correct: false },
+      { text: "image", correct: false },
+      { text: "text", correct: true },
+      { text: "table", correct: false },
+      { text: "list", correct: false },
     ],
   },
   {
-    question: "Q6: Is web development fun?",
+    question: "Q6: what is 'html' stands for?",
     answers: [
-      { text: "Kinda", correct: false },
-      { text: "YES!!!", correct: true },
-      { text: "Um no", correct: false },
+      { text: "Hyperlink Markup Language", correct: false },
       { text: "IDK", correct: false },
+      { text: "Hypertext Markup Language", correct: true },
+      { text: "Hypertext Makeup Language", correct: false },
     ],
   },
   {
@@ -91,11 +91,17 @@ function setTime() {
       // if so, sotp the timer
       clearInterval(timerInterval);
       // trigger the message
-      nextQuestion();
+      timeUp();
     }
   }, 1000);
 }
 
+function timeUp() {
+  questionContainer.removeChild(questionContainer.firstChild);
+  questionContainer.textContent =
+    "Good Job! You got " + currentQuestionIndex + " POINTS";
+  nextBtn.classList.add("hide");
+}
 setTime();
 
 startBtn.addEventListener("click", startGame);
