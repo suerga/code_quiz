@@ -20,12 +20,12 @@ var questions = [
     ],
   },
   {
-    question: "Q2: Is web development fun?",
+    question: "Q2: what type of file will add style to website?",
     answers: [
-      { text: "Kinda", correct: false },
-      { text: "YES!!!", correct: true },
-      { text: "Um no", correct: false },
-      { text: "IDK", correct: false },
+      { text: "css", correct: true },
+      { text: "txt", correct: false },
+      { text: "doc", correct: false },
+      { text: "jpg", correct: false },
     ],
   },
   {
@@ -77,7 +77,7 @@ var questions = [
 
 let currentQuestionIndex = 0;
 
-var secondsLeft = 30;
+var secondsLeft = 300;
 
 function setTime() {
   var timerInterval = setInterval(function () {
@@ -175,6 +175,7 @@ function nextQuestion() {
   showQuestion();
   resetState();
   showAnswer();
+  scoreEl.textContent = "Score: " + currentQuestionIndex;
 }
 
 console.log(currentQuestionIndex);
