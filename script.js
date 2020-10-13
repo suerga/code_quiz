@@ -6,6 +6,7 @@ var start = document.querySelector(".start");
 var questionContainer = document.querySelector("#question-container");
 var questionElement = document.querySelector("#question");
 var answerBtn = document.querySelector("#answer-btn");
+var timeEl = document.querySelector(".timer");
 
 var questions = [
   {
@@ -27,7 +28,7 @@ var questions = [
     ],
   },
   {
-    question: "Is web development fun?",
+    question: "Q3: Is web development fun?",
     answers: [
       { text: "Kinda", correct: false },
       { text: "YES!!!", correct: true },
@@ -36,7 +37,7 @@ var questions = [
     ],
   },
   {
-    question: "Is web development fun?",
+    question: "Q4: Is web development fun?",
     answers: [
       { text: "Kinda", correct: false },
       { text: "YES!!!", correct: true },
@@ -45,7 +46,7 @@ var questions = [
     ],
   },
   {
-    question: "Is web development fun?",
+    question: "Q5: Is web development fun?",
     answers: [
       { text: "Kinda", correct: false },
       { text: "YES!!!", correct: true },
@@ -54,7 +55,7 @@ var questions = [
     ],
   },
   {
-    question: "Is web development fun?",
+    question: "Q6: Is web development fun?",
     answers: [
       { text: "Kinda", correct: false },
       { text: "YES!!!", correct: true },
@@ -63,7 +64,7 @@ var questions = [
     ],
   },
   {
-    question: "Is web development fun?",
+    question: "Q7: Is web development fun?",
     answers: [
       { text: "Kinda", correct: false },
       { text: "YES!!!", correct: true },
@@ -73,13 +74,36 @@ var questions = [
   },
 ];
 
-var currentQuestionIndex = 0;
+let currentQuestionIndex = 0;
+
+var secondsLeft = 60;
+
+function setTime() {
+  var timerInterval = setInterval(function () {
+    // knock a second off the clock
+    secondsLeft--;
+    // display the new countdown time
+    timeEl.textContent = "Time: " + secondsLeft;
+
+    // check if we are out of time
+    if (secondsLeft === 0) {
+      // if so, sotp the timer
+      clearInterval(timerInterval);
+      // trigger the message
+      sendMessage();
+    }
+  }, 1000);
+}
+
+setTime();
 
 startBtn.addEventListener("click", startGame);
 nextBtn.addEventListener("click", addNumber);
 
 function addNumber() {
-  currentQuestionIndex++;
+  for (i = currentQuestionIndex; i < questions.length; i++) {
+    currentQuestionIndex = i;
+  }
 }
 
 function startGame() {
@@ -107,7 +131,6 @@ function showAnswer() {
     answerBtn.appendChild(button);
   });
 }
-showAnswer();
 
 function selectAnswer(e) {
   const selectedButton = e.target;
@@ -132,4 +155,14 @@ function clearStatusClass(element) {
   element.classList.remove("wrong");
 }
 
+function resetState() {
+  clearStatusClass(document.body);
+  nextButton.classList.add("hide");
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  }
+}
+
 console.log(currentQuestionIndex);
+
+showAnswer();
