@@ -7,6 +7,7 @@ var questionContainer = document.querySelector("#question-container");
 var questionElement = document.querySelector("#question");
 var answerBtn = document.querySelector("#answer-btn");
 var timeEl = document.querySelector(".timer");
+var scoreEl = document.querySelector(".score");
 
 var questions = [
   {
@@ -19,7 +20,7 @@ var questions = [
     ],
   },
   {
-    question: "Q2:Is web development fun?",
+    question: "Q2: Is web development fun?",
     answers: [
       { text: "Kinda", correct: false },
       { text: "YES!!!", correct: true },
@@ -76,7 +77,7 @@ var questions = [
 
 let currentQuestionIndex = 0;
 
-var secondsLeft = 60;
+var secondsLeft = 30;
 
 function setTime() {
   var timerInterval = setInterval(function () {
@@ -90,7 +91,7 @@ function setTime() {
       // if so, sotp the timer
       clearInterval(timerInterval);
       // trigger the message
-      sendMessage();
+      nextQuestion();
     }
   }, 1000);
 }
@@ -98,19 +99,17 @@ function setTime() {
 setTime();
 
 startBtn.addEventListener("click", startGame);
-nextBtn.addEventListener("click", addNumber);
-
-function addNumber() {
-  for (i = currentQuestionIndex; i < questions.length; i++) {
-    currentQuestionIndex = i;
-  }
-}
+nextBtn.addEventListener("click", nextQuestion);
 
 function startGame() {
   console.log("started");
   start.classList.add("hide");
   questionContainer.classList.remove("hide");
   nextBtn.classList.remove("hide");
+  currentQuestionIndex = 0;
+  console.log(currentQuestionIndex);
+  showQuestion();
+  showAnswer();
 }
 
 function showQuestion() {
@@ -141,6 +140,13 @@ function selectAnswer(e) {
   });
 }
 
+function resetState() {
+  clearStatusClass(document.body);
+  while (answerBtn.firstChild) {
+    answerBtn.removeChild(answerBtn.firstChild);
+  }
+}
+
 function setStatusClass(element, correct) {
   clearStatusClass(element);
   if (correct) {
@@ -157,12 +163,20 @@ function clearStatusClass(element) {
 
 function resetState() {
   clearStatusClass(document.body);
-  nextButton.classList.add("hide");
-  while (answerButtonsElement.firstChild) {
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  while (answerBtn.firstChild) {
+    answerBtn.removeChild(answerBtn.firstChild);
   }
+}
+
+function nextQuestion() {
+  console.log("next");
+  currentQuestionIndex++;
+  console.log(currentQuestionIndex);
+  showQuestion();
+  resetState();
+  showAnswer();
 }
 
 console.log(currentQuestionIndex);
 
-showAnswer();
+// showAnswer();
